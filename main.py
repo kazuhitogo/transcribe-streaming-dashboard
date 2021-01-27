@@ -6,6 +6,7 @@ from matplotlib import pyplot as plt
 import boto3
 from drawnow import drawnow
 
+# transcription が送られてきたときのイベントハンドラークラス
 class MyEventHandler(TranscriptResultStreamHandler):
     def __init__(self,TranscriptResultStream,language_code='ja'):
         super().__init__(TranscriptResultStream)
@@ -25,14 +26,14 @@ class MyEventHandler(TranscriptResultStreamHandler):
         }
         self.fig = plt.figure(figsize=(16,9))
         self.counter=0
-        self.display_interbal = 1 # 未確定センテンスの表示は重いので、8回に一回にする(マジックナンバー)
+        self.display_interbal = 8 # 未確定センテンスの表示は重いので、8回に一回にする(マジックナンバー)
     
     def draw(self):
         plt.subplot(211).plot(self.start_time_list,self.sentiment_list['Positive'],color='g',label='Positive')
         plt.subplot(211).plot(self.start_time_list,self.sentiment_list['Negative'],color='r',label='Negative')
         plt.subplot(211).plot(self.start_time_list,self.sentiment_list['Neutral'],color='k',label='Newtral')
         plt.subplot(211).plot(self.start_time_list,self.sentiment_list['Mixed'],color='m',label='Mixed')
-        plt.subplot(211).legend(bbox_to_anchor=(0, 1), loc='upper left', borderaxespad=0, fontsize=5)
+        plt.subplot(211).legend(bbox_to_anchor=(0, 1), loc='upper left', borderaxespad=0, fontsize=10)
         self.text_display_param['row_num'] = self.text_display_param['max_row_num'] if len(self.transcription_list) > self.text_display_param['max_row_num'] else len(self.transcription_list)
         plt.subplot(212).plot([0,1],[0,1],color='w')
         for i in range(self.text_display_param['row_num']):
@@ -85,7 +86,6 @@ class MyEventHandler(TranscriptResultStreamHandler):
                         self.key_phrases_list[-1] = [key_phrase['Text'] for key_phrase in self.detect_key_phrases_return['KeyPhrases']]
                         drawnow(self.draw)
                         self.counter = 0
-                
 
 
 async def mic_stream():
