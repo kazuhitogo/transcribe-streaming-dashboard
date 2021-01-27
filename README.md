@@ -31,3 +31,6 @@ When using the Northern Virginia region for English transcription
 ```shell
 $ python ./main.py --region us-east-1 --language-code 'en-US'
 ```
+
+## caution
+日本語が文字化けする場合は matplotlib の設定をよしなによろしくおねがいします。
