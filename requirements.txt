@@ -1,0 +1,4 @@
+amazon-transcribe
+sounddevice
+matplotlib
+drawnow
