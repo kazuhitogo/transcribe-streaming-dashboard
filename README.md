@@ -4,7 +4,7 @@
 
 Transcribes your words from the microphone connected to your computer, performs emotion analysis and key phrase detection, and displays them on the dashboard.  
 あなたのコンピュータに接続されているマイクから、あなたの言葉を文字に起こし、感情分析と、キーフレーズ検出を行い、ダッシュボードに表示します。
-
+![](media/1.png)
 
 ## Prerequirement
 
