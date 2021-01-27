@@ -9,8 +9,8 @@ Transcribes your words from the microphone connected to your computer, performs 
 ## Prerequirement
 
 ```shell
-$ aws configure # Set up the IAM access key and other settings to use transcribe on your computer
 $ pip install -r ./requirements.txt
+$ aws configure # Set up the IAM access key and other settings to use transcribe on your computer
 ```
 
 
